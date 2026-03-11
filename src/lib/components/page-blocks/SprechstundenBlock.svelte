@@ -13,7 +13,12 @@
 
 	function formatDoctors(doctors) {
 		if (!doctors || doctors.length === 0) return '';
-		return doctors.map((d) => `${d.first_name ?? ''} ${d.last_name ?? ''}`.trim()).join(', ');
+		return doctors
+			.map((d) => {
+				const name = `${d.first_name ?? ''} ${d.last_name ?? ''}`.trim();
+				return `<a href="#über-uns">${name}</a>`;
+			})
+			.join(', ');
 	}
 </script>
 
@@ -37,43 +42,46 @@
 							{/if}
 
 							{#if sprechstunde.days && sprechstunde.days.length > 0}
-								<div class="days-grid mt-3">
+								<div class="mt-3">
 									{#each sprechstunde.days as tag, j (tag.id ?? j)}
-										<div class="day-card mb-4">
-											<h4 class="fw-bold">{tag.day}</h4>
+										<div class="day-row row py-3">
+											<div class="col-md-3">
+												<h4 class="fw-bold mb-0">{tag.day}</h4>
+											</div>
+											<div class="col-md-9">
+												{#if tag.sprechzeiten && tag.sprechzeiten.length > 0}
+													{#each tag.sprechzeiten as slot, k (slot.id ?? k)}
+														<div class="slot-entry" class:mt-2={k > 0} class:pt-2={k > 0}>
+															<div>
+																{#if slot.description}
+																	<span class="fw-semibold">{slot.description}:</span>
+																{/if}
+																{#if slot.start && slot.end}
+																	<span>&nbsp;{slot.start}-{slot.end}</span>
+																{:else if slot.start}
+																	<span>&nbsp;{slot.start}</span>
+																{:else}
+																	<span>-</span>
+																{/if}
+															</div>
 
-											{#if tag.sprechzeiten && tag.sprechzeiten.length > 0}
-												{#each tag.sprechzeiten as slot, k (slot.id ?? k)}
-													<div class="slot-entry py-1">
-														<div class="d-flex flex-wrap align-items-baseline gap-2">
-															{#if slot.description}
-																<span class="fw-bold">{slot.description}:</span>
+															{#if formatDoctors(slot.doctors)}
+																<div class="doctor-links small">
+																	{@html formatDoctors(slot.doctors)}
+																</div>
 															{/if}
-															{#if slot.start && slot.end}
-																<span>{slot.start}-{slot.end}</span>
-															{:else if slot.start}
-																<span>{slot.start}</span>
-															{:else}
-																<span>-</span>
+
+															{#if slot.annotation}
+																<div class="fst-italic small text-muted">
+																	{slot.annotation}
+																</div>
 															{/if}
 														</div>
-
-														{#if formatDoctors(slot.doctors)}
-															<div class="text-muted small">
-																{formatDoctors(slot.doctors)}
-															</div>
-														{/if}
-
-														{#if slot.annotation}
-															<div class="fst-italic small text-muted">
-																{slot.annotation}
-															</div>
-														{/if}
-													</div>
-												{/each}
-											{:else}
-												<span>-</span>
-											{/if}
+													{/each}
+												{:else}
+													<span>-</span>
+												{/if}
+											</div>
 										</div>
 									{/each}
 								</div>
@@ -87,21 +95,20 @@
 </section>
 
 <style>
-	.days-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-		gap: 1rem;
-	}
-
-	.day-card {
-		padding: 0.75rem;
-		border-radius: 0.5rem;
-		background: rgba(255, 255, 255, 0.5);
+	.day-row + .day-row {
+		border-top: 1px solid rgba(0, 0, 0, 0.1);
 	}
 
 	.slot-entry + .slot-entry {
-		border-top: 1px solid rgba(0, 0, 0, 0.1);
-		margin-top: 0.25rem;
-		padding-top: 0.25rem;
+		border-top: 1px solid rgba(0, 0, 0, 0.07);
+	}
+
+	.doctor-links :global(a) {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.doctor-links :global(a:hover) {
+		text-decoration: underline;
 	}
 </style>
