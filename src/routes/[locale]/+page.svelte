@@ -5,29 +5,30 @@
 	import SprechstundenBlock from '$lib/components/page-blocks/SprechstundenBlock.svelte';
 	import ContactBlock from '$lib/components/page-blocks/ContactBlock.svelte';
 	import FooterBlock from '$lib/components/page-blocks/FooterBlock.svelte';
+	import AnnouncementsBlock from '$lib/components/page-blocks/AnnouncementsBlock.svelte';
+	import UrgentAlerts from '$lib/components/UrgentAlerts.svelte';
 	import StrapiImage from '$lib/components/StrapiImage.svelte';
 
 	let { data } = $props();
-
-	console.log('data:', JSON.stringify(data, null, 2));
 
 	const landingPage = $derived(data['alpra-page-landing']?.data ?? {});
 	const landingBlocks = $derived(landingPage?.content ?? []);
 	const meta = $derived(data['alpra-meta']?.data ?? {});
 	const locale = $derived(data.locale);
 
-	$effect(() => {
-		console.log('landingPage:', landingPage);
-		console.log('landingBlocks:', landingBlocks);
-		console.log('meta:', meta);
-		console.log('locale:', locale);
-	});
+	const announcements = $derived(data['alpra-announcements']?.data ?? []);
+	const urgentAnnouncements = $derived(announcements.filter((a) => a.is_urgent === true));
+	const regularAnnouncements = $derived(announcements.filter((a) => a.is_urgent !== true));
 </script>
 
 {#if meta?.page_banner}
 	<div class="w-100">
 		<StrapiImage asset={meta.page_banner} alt="Banner" class="img-fluid w-100" />
 	</div>
+{/if}
+
+{#if urgentAnnouncements.length > 0}
+	<UrgentAlerts announcements={urgentAnnouncements} />
 {/if}
 
 {#each landingBlocks as block, idx (`${block?.__component ?? 'unknown'}-${block?.id ?? idx}`)}
@@ -43,5 +44,7 @@
 		<ContactBlock data={block} {meta} />
 	{:else if block?.__component === 'alpra-page-blocks.footer'}
 		<FooterBlock data={block} {meta} {locale} />
+	{:else if block?.__component === 'alpra-page-blocks.announcements'}
+		<AnnouncementsBlock data={block} announcements={regularAnnouncements} />
 	{/if}
 {/each}

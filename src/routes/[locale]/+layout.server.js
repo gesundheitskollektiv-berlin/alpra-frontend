@@ -6,12 +6,11 @@ export async function load({ params, fetch }) {
 
 	const data = {};
 
-	const endpoints = ['alpra-page-landing', 'alpra-meta'];
+	const endpoints = ['alpra-page-landing', 'alpra-meta', 'alpra-announcements'];
 
 	for (const endpoint of endpoints) {
 		try {
 			data[endpoint] = await getDataFromCMS(endpoint, locale, fetch);
-			console.log(`[layout.server] ${endpoint}:`, JSON.stringify(data[endpoint], null, 2));
 		} catch (err) {
 			console.error(`[layout.server] Failed to fetch ${endpoint}:`, err);
 			data[endpoint] = { data: null };
@@ -19,7 +18,6 @@ export async function load({ params, fetch }) {
 	}
 
 	data['locale'] = locale;
-	console.log('[layout.server] returning locale:', locale);
 
 	return data;
 }
