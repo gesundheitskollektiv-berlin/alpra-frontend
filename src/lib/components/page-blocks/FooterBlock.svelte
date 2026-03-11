@@ -29,51 +29,69 @@
 				</div>
 
 				<div class="row mt-4">
-					<div class="col-md-6 contact-data">
+					<div class="col-md-4 contact-data">
 						<h5 class="h5">Kontakt</h5>
 						{#if meta?.street}
 							<p>
 								<span class="fa fa-home" aria-hidden="true"></span>
-								&nbsp;
-								{meta.street}, {meta.postal}
-								{meta.city}
+								&nbsp;{meta.street}, {meta.postal} {meta.city}
 							</p>
 						{/if}
 
 						{#if meta?.phone}
 							<p>
 								<span class="fa fa-phone" aria-hidden="true"></span>
-								&nbsp;
-								<a href="tel:{meta.phone}">{meta.phone}</a>
+								&nbsp;<a href="tel:{meta.phone}" class="text-decoration-none">{meta.phone}</a>
 							</p>
 						{/if}
 
 						{#if meta?.fax}
 							<p>
 								<span class="fa fa-fax" aria-hidden="true"></span>
-								&nbsp;
-								{meta.fax}
+								&nbsp;{meta.fax}
 							</p>
 						{/if}
 
 						{#if meta?.email}
 							<p>
 								<span class="fa fa-envelope" aria-hidden="true"></span>
-								&nbsp;
-								<a href="mailto:{meta.email}">{meta.email}</a>
+								&nbsp;<a href="mailto:{meta.email}" class="text-decoration-none">{meta.email}</a>
 							</p>
 						{/if}
 					</div>
 
-					<div class="col-md-6">
+					<div class="col-md-4">
 						<h5 class="h5">Impressum</h5>
-						{#if meta?.company}
-							<p class="fw-bold">{meta.company}</p>
-						{/if}
+						<p><em>Berufsausübungsgemeinschaft (BAG)</em></p>
+						<p><strong>Stadtteil-Praxis Neukölln</strong></p>
+						<p>
+							<strong>Johanna Henatsch</strong><br />
+							<em>Fachärztin für Innere Medizin</em>
+						</p>
+						<p>
+							<strong>Kirsten Schubert</strong><br />
+							<em>Fachärztin für Allgemeinmedizin</em><br />
+							<em>Hausärztliche Versorgung</em>
+						</p>
+					</div>
 
-						<div class="mt-4">
-							<a href="{baseUrl}/datenschutz" class="text-decoration-underline">Datenschutz</a>
-						</div>
+					<div class="col-md-4">
+						<h5 class="h5">Zuständige Aufsichtsbehörde</h5>
+						<p>
+							Landesamt für Gesundheit und Soziales (LAGeSo)<br />
+							Postanschrift: Postfach 31 09 29, 10639 Berlin<br />
+							Telefon: (030) 90229-0
+						</p>
+						<p>
+							<strong>Ärztekammer Berlin</strong><br />
+							Friedrichstraße 16<br />
+							10969 Berlin
+						</p>
+						<p>
+							<a href="{baseUrl}/datenschutz" class="text-decoration-underline fw-lighter"
+								>Datenschutz</a
+							>
+						</p>
 					</div>
 				</div>
 			</div>
