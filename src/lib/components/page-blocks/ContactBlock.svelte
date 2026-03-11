@@ -62,28 +62,22 @@
 					</div>
 				</div>
 
-				<div class="row mb-5">
-					<div class="col-md-7">
-						<div id="map-simple" class={showGoogleMap ? 'd-none' : ''}>
-							<div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center">
-								<iframe
-									src={`https://maps.google.com/maps?width=100%25&height=600&hl=de&q=${mapQuery}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
-									allowfullscreen
-									loading="lazy"
-									title="Google Maps"
-								></iframe>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-5">
-						{#if data?.content}
-							<div class="content-container">
-								{@html resolveRichText(data.content)}
-							</div>
-						{/if}
+				<div id="map-simple" class={`mb-4 ${showGoogleMap ? 'd-none' : ''}`}>
+					<div class="ratio ratio-16x9 bg-light">
+						<iframe
+							src={`https://maps.google.com/maps?width=100%25&height=600&hl=de&q=${mapQuery}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
+							allowfullscreen
+							loading="lazy"
+							title="Google Maps"
+						></iframe>
 					</div>
 				</div>
+
+				{#if data?.content}
+					<div class="content-container mb-4">
+						{@html resolveRichText(data.content)}
+					</div>
+				{/if}
 			</div>
 		</div>
 	</div>
