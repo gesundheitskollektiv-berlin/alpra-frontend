@@ -38,7 +38,7 @@ async function fetchAllPages(path, locale, fetchFn = fetch) {
 	let totalPages = 1;
 
 	do {
-		const queryUrl = `${PUBLIC_STRAPI_URL}/api/${path}?pLevel&locale=${locale}&pagination[page]=${currentPage}&pagination[pageSize]=100`;
+		const queryUrl = `${PUBLIC_STRAPI_URL}/api/${path}?pLevel&locale=${locale}&pagination[page]=${currentPage}&pagination[pageSize]=100&sort=last_name:asc`;
 		const result = await fetchData(queryUrl, fetchFn);
 
 		if (result?.data) {
