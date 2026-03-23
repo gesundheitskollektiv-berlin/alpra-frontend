@@ -1,6 +1,6 @@
-import { PUBLIC_STRAPI_URL } from '$env/static/public';
 import { building } from '$app/environment';
 import { env } from '$env/dynamic/public';
+import { getStrapiPublicUrl } from '$lib/helpers/strapiPublicUrl';
 
 const cache = new Map();
 
@@ -22,23 +22,29 @@ const fetchData = async (url, fetchFn = fetch) => {
 };
 
 export async function getDataFromCMS(path, locale, fetchFn = fetch) {
+	const base = getStrapiPublicUrl();
+	if (!base) {
+		console.error('[getDataFromCMS] PUBLIC_STRAPI_URL is missing');
+		return { data: null };
+	}
+
 	const shouldFetchAllPages = ['alpra-personnels'];
 
 	if (shouldFetchAllPages.includes(path)) {
-		return await fetchAllPages(path, locale, fetchFn);
+		return await fetchAllPages(path, locale, fetchFn, base);
 	}
 
-	const queryUrl = `${PUBLIC_STRAPI_URL}/api/${path}?pLevel&locale=${locale}`;
+	const queryUrl = `${base}/api/${path}?pLevel&locale=${locale}`;
 	return await fetchData(queryUrl, fetchFn);
 }
 
-async function fetchAllPages(path, locale, fetchFn = fetch) {
+async function fetchAllPages(path, locale, fetchFn = fetch, baseUrl = getStrapiPublicUrl()) {
 	let allData = [];
 	let currentPage = 1;
 	let totalPages = 1;
 
 	do {
-		const queryUrl = `${PUBLIC_STRAPI_URL}/api/${path}?pLevel&locale=${locale}&pagination[page]=${currentPage}&pagination[pageSize]=100&sort=last_name:asc`;
+		const queryUrl = `${baseUrl}/api/${path}?pLevel&locale=${locale}&pagination[page]=${currentPage}&pagination[pageSize]=100&sort=last_name:asc`;
 		const result = await fetchData(queryUrl, fetchFn);
 
 		if (result?.data) {

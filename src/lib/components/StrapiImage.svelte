@@ -1,18 +1,19 @@
 <script>
 	import 'lazysizes';
-	import { PUBLIC_STRAPI_URL } from '$env/static/public';
+	import { getStrapiPublicUrl } from '$lib/helpers/strapiPublicUrl';
 
 	let { src, asset, alt, style, class: classProps = '' } = $props();
 
 	const getSrc = () => {
+		const base = getStrapiPublicUrl();
 		if (asset?.url) {
 			const url = asset.url;
 			if (url.startsWith('http')) return url;
-			return `${PUBLIC_STRAPI_URL}${url}`;
+			return `${base}${url}`;
 		}
 		if (src) {
 			if (src.startsWith('http')) return src;
-			return `${PUBLIC_STRAPI_URL}${src}`;
+			return `${base}${src}`;
 		}
 		return '';
 	};
@@ -24,7 +25,7 @@
 		if (!asset?.formats) return '';
 
 		const formats = asset.formats;
-		const baseUrl = PUBLIC_STRAPI_URL;
+		const baseUrl = getStrapiPublicUrl();
 		const srcsetParts = [];
 
 		if (formats.small?.url) {
@@ -58,7 +59,7 @@
 		asset?.formats?.large?.url
 			? asset.formats.large.url.startsWith('http')
 				? asset.formats.large.url
-				: `${PUBLIC_STRAPI_URL}${asset.formats.large.url}`
+				: `${getStrapiPublicUrl()}${asset.formats.large.url}`
 			: resolvedSrc
 	);
 </script>
