@@ -60,6 +60,23 @@ h4 {
 	font-size: 1.125rem;
 }
 
+ul {
+	list-style: none;
+}
+
+section ul {
+	list-style: disc outside;
+	list-style-image: none;
+	margin-left: 2em;
+	margin-top: 1em;
+}
+
+body section ul {
+	padding-bottom: 15px;
+	margin-left: 1em;
+	list-style-image: url('/images/Pfeil-Liste.svg');
+}
+
 @include media-breakpoint-up(lg) {
 	body {
 		font-size: 1.3125rem;

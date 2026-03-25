@@ -96,7 +96,4 @@
 		line-height: 2;
 	}
 
-	.content-container :global(ul) {
-		padding-left: 1rem !important;
-	}
 </style>
