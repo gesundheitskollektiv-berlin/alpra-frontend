@@ -13,7 +13,7 @@
 <footer id={sectionId} class={`${backgroundClass} py-5`}>
 	<div class="container fs-5" id="footer">
 		<div class="row justify-content-center">
-			<div class="col-lg-8 col-md-9 col-sm-11">
+			<div class="col-lg-10 col-md-12 col-sm-12">
 				<div class="row">
 					<div class="col-12">
 						<a href={baseUrl}>
@@ -103,5 +103,13 @@
 	.footer-logo {
 		height: 80px;
 		width: auto;
+	}
+
+	footer :global(p),
+	footer :global(h5),
+	footer :global(a) {
+		overflow-wrap: break-word;
+		word-break: break-word;
+		hyphens: auto;
 	}
 </style>
