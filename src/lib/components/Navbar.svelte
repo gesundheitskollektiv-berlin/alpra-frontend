@@ -94,8 +94,8 @@
 	<div class="container">
 		<a class="navbar-brand d-flex align-items-center" href="/">
 			<img
-				src="/assets/img/Logo_Alpra.svg"
-				alt="Stadtteilpraxis Logo"
+				src="/images/Logo-Praxis.svg"
+				alt="Logo Stadtteilpraxis"
 				class="navbar-logo"
 				class:navbar-logo-small={isScrolled}
 			/>

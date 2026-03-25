@@ -19,9 +19,9 @@
 						<a href={baseUrl}>
 							<figure class="mb-0 py-3 text-start">
 								<img
-									src="/assets/img/Logo_Alpra.svg"
+									src="/images/Logo-Praxis-Footer.svg"
 									alt="Logo"
-									style="height: 80px; width: auto;"
+									class="footer-logo"
 								/>
 							</figure>
 						</a>
@@ -98,3 +98,10 @@
 		</div>
 	</div>
 </footer>
+
+<style>
+	.footer-logo {
+		height: 80px;
+		width: auto;
+	}
+</style>
