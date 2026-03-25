@@ -32,4 +32,8 @@
 	section {
 		line-height: 2;
 	}
+
+	section :global(h4) {
+		margin-top: 2rem;
+	}
 </style>
