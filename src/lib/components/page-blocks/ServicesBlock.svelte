@@ -27,3 +27,9 @@
 		</div>
 	</div>
 </section>
+
+<style>
+	section {
+		line-height: 2;
+	}
+</style>

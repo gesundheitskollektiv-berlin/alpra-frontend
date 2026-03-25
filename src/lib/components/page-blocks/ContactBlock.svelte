@@ -84,11 +84,16 @@
 </section>
 
 <style>
+	#contact-data p {
+		line-height: 2;
+	}
+
 	.content-container {
 		overflow-wrap: break-word;
 		word-wrap: break-word;
 		max-width: 100%;
 		overflow: hidden;
+		line-height: 2;
 	}
 
 	.content-container :global(ul) {
