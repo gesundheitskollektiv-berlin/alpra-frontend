@@ -1,6 +1,7 @@
 <script>
 	import { resolveRichText } from '$lib/helpers/richTextResolver';
 	import { slugify } from '$lib/helpers/landingBlocks';
+	import DayRow from './sprechstunden/DayRow.svelte';
 
 	let { data = {} } = $props();
 
@@ -44,45 +45,7 @@
 							{#if sprechstunde.days && sprechstunde.days.length > 0}
 								<div class="mt-3">
 									{#each sprechstunde.days as tag, j (tag.id ?? j)}
-										<div class="day-row row py-3">
-											<div class="col-md-3">
-												<h4 class="fw-bold mb-0">{tag.day}</h4>
-											</div>
-											<div class="col-md-9">
-												{#if tag.sprechzeiten && tag.sprechzeiten.length > 0}
-													{#each tag.sprechzeiten as slot, k (slot.id ?? k)}
-														<div class="slot-entry" class:mt-2={k > 0} class:pt-2={k > 0}>
-															<div>
-																{#if slot.description}
-																	<span class="fw-semibold">{slot.description}:</span>
-																{/if}
-																{#if slot.start && slot.end}
-																	<span>&nbsp;{slot.start}-{slot.end}</span>
-																{:else if slot.start}
-																	<span>&nbsp;{slot.start}</span>
-																{:else}
-																	<span>-</span>
-																{/if}
-															</div>
-
-															{#if formatDoctors(slot.doctors)}
-																<div class="doctor-links small">
-																	{@html formatDoctors(slot.doctors)}
-																</div>
-															{/if}
-
-															{#if slot.annotation}
-																<div class="fst-italic small text-muted">
-																	{slot.annotation}
-																</div>
-															{/if}
-														</div>
-													{/each}
-												{:else}
-													<span>-</span>
-												{/if}
-											</div>
-										</div>
+										<DayRow {tag} {formatDoctors} />
 									{/each}
 								</div>
 							{/if}
@@ -97,22 +60,5 @@
 <style>
 	section {
 		line-height: 2;
-	}
-
-	.day-row + .day-row {
-		border-top: 1px solid rgba(0, 0, 0, 0.1);
-	}
-
-	.slot-entry + .slot-entry {
-		border-top: 1px solid rgba(0, 0, 0, 0.07);
-	}
-
-	.doctor-links :global(a) {
-		color: inherit;
-		text-decoration: none;
-	}
-
-	.doctor-links :global(a:hover) {
-		text-decoration: underline;
 	}
 </style>
