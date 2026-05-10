@@ -17,7 +17,7 @@
 		return doctors
 			.map((d) => {
 				const name = `${d.first_name ?? ''} ${d.last_name ?? ''}`.trim();
-				return `<a href="#über-uns">${name}</a>`;
+				return `<a href="#mitarbeiterinnen">${name}</a>`;
 			})
 			.join(', ');
 	}
