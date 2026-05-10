@@ -103,6 +103,15 @@
 	.footer-logo {
 		height: 80px;
 		width: auto;
+		max-width: 100%;
+	}
+
+	@media (max-width: 575.98px) {
+		.footer-logo {
+			height: auto;
+			width: 100%;
+			max-width: 320px;
+		}
 	}
 
 	footer :global(p),
