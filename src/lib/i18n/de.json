@@ -3,7 +3,11 @@
 	"back": "Zurück",
 	"chooseLanguage": "Sprache wählen",
 	"bookAppointment": "Termin buchen",
+	"languagesLabel": "Sprachen",
+	"imprint": "Impressum",
+	"privacyPolicyShort": "Datenschutz",
 	"languages": {
-		"de": "Deutsch"
+		"de": "Deutsch",
+		"en": "English"
 	}
 }

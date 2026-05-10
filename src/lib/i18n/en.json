@@ -1,0 +1,13 @@
+{
+	"today": "Today",
+	"back": "Back",
+	"chooseLanguage": "Choose language",
+	"bookAppointment": "Book appointment",
+	"languagesLabel": "Languages",
+	"imprint": "Imprint",
+	"privacyPolicyShort": "Privacy",
+	"languages": {
+		"de": "Deutsch",
+		"en": "English"
+	}
+}
