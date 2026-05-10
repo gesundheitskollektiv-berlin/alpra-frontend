@@ -47,6 +47,6 @@
 	{:else if block?.__component === 'alpra-page-blocks.footer'}
 		<FooterBlock data={block} {meta} {locale} />
 	{:else if block?.__component === 'alpra-page-blocks.announcements'}
-		<AnnouncementsBlock data={block} announcements={regularAnnouncements} />
+		<AnnouncementsBlock data={block} announcements={regularAnnouncements} {locale} />
 	{/if}
 {/each}

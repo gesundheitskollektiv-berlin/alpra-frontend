@@ -5,6 +5,20 @@ export function resolveRichText(nodes) {
 	return nodes.map((c) => resolveRichTextNode(c)).join('');
 }
 
+/** First heading as its own HTML string; remainder as full HTML. If no leading heading, headlineHtml is null and restHtml is the full document. */
+export function splitRichTextAtFirstHeading(nodes) {
+	if (!nodes || !Array.isArray(nodes) || nodes.length === 0) {
+		return { headlineHtml: null, restHtml: '' };
+	}
+	if (nodes[0]?.type === 'heading') {
+		return {
+			headlineHtml: resolveRichText([nodes[0]]),
+			restHtml: resolveRichText(nodes.slice(1))
+		};
+	}
+	return { headlineHtml: null, restHtml: resolveRichText(nodes) };
+}
+
 function resolveRichTextNode(node) {
 	if (typeof node === 'string') return node;
 	let html = '';
