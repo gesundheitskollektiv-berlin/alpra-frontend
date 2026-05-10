@@ -2,11 +2,33 @@
 	import SlotEntry from './SlotEntry.svelte';
 
 	let { tag = {}, formatDoctors } = $props();
+
+	let todayName = $state('');
+
+	$effect(() => {
+		const update = () => {
+			todayName = new Intl.DateTimeFormat('de-DE', { weekday: 'long' }).format(new Date());
+		};
+		update();
+		const now = new Date();
+		const msUntilMidnight =
+			new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1).getTime() - now.getTime();
+		const timer = setTimeout(update, msUntilMidnight + 1000);
+		return () => clearTimeout(timer);
+	});
+
+	const isToday = $derived(
+		!!todayName &&
+			(tag?.day || '').trim().toLowerCase() === todayName.trim().toLowerCase()
+	);
 </script>
 
-<div class="day-row row py-3">
-	<div class="col-md-3">
+<div class="day-row row py-3" class:is-today={isToday}>
+	<div class="col-md-3 d-flex align-items-center gap-2 flex-wrap">
 		<h4 class="fw-bold mb-0">{tag.day}</h4>
+		{#if isToday}
+			<span class="badge bg-alpra-yellow text-black">Heute</span>
+		{/if}
 	</div>
 	{#if tag.sprechzeiten && tag.sprechzeiten.length > 0}
 		{#each tag.sprechzeiten as slot, k (slot.id ?? k)}
@@ -22,7 +44,18 @@
 </div>
 
 <style>
-	.day-row + :global(.day-row) {
-		border-top: 1px solid rgba(0, 0, 0, 0.1);
+	.day-row {
+		border-radius: 0.5rem;
+		transition: background-color 0.15s ease;
+	}
+
+	.day-row:nth-child(odd) {
+		background-color: rgba(255, 255, 255, 0.35);
+	}
+
+	.day-row.is-today {
+		background-color: rgba(255, 255, 255, 0.7);
+		border-left: 4px solid var(--bs-alpra-yellow, #fff15b);
+		padding-left: 0.75rem;
 	}
 </style>
