@@ -41,7 +41,7 @@
 	{:else if block?.__component === 'alpra-page-blocks.services'}
 		<ServicesBlock data={block} />
 	{:else if block?.__component === 'alpra-page-blocks.sprechstunden'}
-		<SprechstundenBlock data={block} />
+		<SprechstundenBlock data={block} {locale} />
 	{:else if block?.__component === 'alpra-page-blocks.contact'}
 		<ContactBlock data={block} {meta} />
 	{:else if block?.__component === 'alpra-page-blocks.footer'}

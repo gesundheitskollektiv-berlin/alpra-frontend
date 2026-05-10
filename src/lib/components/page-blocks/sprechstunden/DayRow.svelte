@@ -1,13 +1,19 @@
 <script>
+	import { t } from '$lib/helpers/translation';
 	import SlotEntry from './SlotEntry.svelte';
 
-	let { tag = {}, formatDoctors } = $props();
+	let { tag = {}, formatDoctors, locale = 'de' } = $props();
+
+	const i18n = $derived(t(locale));
+	const weekdayLocaleTag = $derived(locale === 'de' ? 'de-DE' : locale);
 
 	let todayName = $state('');
 
 	$effect(() => {
 		const update = () => {
-			todayName = new Intl.DateTimeFormat('de-DE', { weekday: 'long' }).format(new Date());
+			todayName = new Intl.DateTimeFormat(weekdayLocaleTag, { weekday: 'long' }).format(
+				new Date()
+			);
 		};
 		update();
 		const now = new Date();
@@ -27,7 +33,7 @@
 	<div class="col-md-3 d-flex align-items-center gap-2 flex-wrap">
 		<h4 class="fw-bold mb-0">{tag.day}</h4>
 		{#if isToday}
-			<span class="badge bg-alpra-yellow text-black">Heute</span>
+			<span class="badge bg-alpra-yellow text-black">{i18n.today}</span>
 		{/if}
 	</div>
 	{#if tag.sprechzeiten && tag.sprechzeiten.length > 0}
