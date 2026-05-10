@@ -199,7 +199,7 @@
 	}
 
 	.brand-logo {
-		height: 55px;
+		height: 44px;
 		width: auto;
 	}
 
@@ -303,12 +303,12 @@
 		flex-direction: column;
 		align-items: flex-end;
 		gap: 12px;
-		margin-top: 8px;
+		margin-top: 32px;
 	}
 
 	.locale-heading {
 		font-weight: 800;
-		font-size: 1rem;
+		font-size: 1.375rem;
 	}
 
 	.locale-pills {
@@ -338,7 +338,7 @@
 	}
 
 	.geko-reference-li {
-		margin-top: 8px;
+		margin-top: 32px;
 	}
 
 	.geko-reference {
@@ -347,7 +347,7 @@
 	}
 
 	.geko-reference-logo {
-		height: 40px;
+		height: 80px;
 		width: auto;
 		display: block;
 	}
