@@ -70,7 +70,7 @@
 	});
 </script>
 
-<header class="mobile-bar bg-alpra-yellow">
+<header class="mobile-bar bg-alpra-yellow d-xl-none">
 	<a class="brand" href="/{locale}" aria-label="Stadtteilpraxis Startseite">
 		<img src="/images/Logo-Praxis.svg" alt="Logo Stadtteilpraxis" class="brand-logo" />
 	</a>
@@ -196,9 +196,6 @@
 		justify-content: space-between;
 		padding: 16px 20px;
 		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-		position: sticky;
-		top: 0;
-		z-index: 1030;
 	}
 
 	.brand-logo {

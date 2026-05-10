@@ -48,9 +48,10 @@
 </script>
 
 <nav
-	class="navbar navbar-expand navbar-light bg-alpra-yellow sticky-top"
+	class="navbar navbar-expand navbar-light bg-alpra-yellow sticky-top d-none d-xl-flex"
 	class:py-3={!isScrolled}
 	class:py-2={isScrolled}
+	class:is-scrolled={isScrolled}
 >
 	<div class="container">
 		<a class="navbar-brand d-flex align-items-center" href="/{locale}">
@@ -150,8 +151,14 @@
 <style>
 	.navbar {
 		z-index: 1030;
-		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-		transition: padding 0.3s ease;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+		transition:
+			padding 0.3s ease,
+			box-shadow 0.3s ease;
+	}
+
+	.navbar.is-scrolled {
+		box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
 	}
 
 	.navbar-logo {
