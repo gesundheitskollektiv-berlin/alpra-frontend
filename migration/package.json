@@ -1,0 +1,11 @@
+{
+  "type": "module",
+  "name": "alpra-frontend-migration",
+  "version": "1.0.0",
+  "description": "Strapi migration scripts for alpra-frontend",
+  "private": true,
+  "dependencies": {
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.5"
+  }
+}
