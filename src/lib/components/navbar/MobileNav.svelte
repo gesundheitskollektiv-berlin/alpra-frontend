@@ -286,14 +286,14 @@
 	}
 
 	.btn-appointment {
-		background-color: var(--bs-alpra-red);
-		color: #fff;
+		background-color: var(--bs-alpra-purple);
+		color: #000;
 	}
 
 	.btn-appointment:hover,
 	.btn-appointment:focus {
-		background-color: var(--bs-alpra-red);
-		color: #fff;
+		background-color: var(--bs-alpra-purple);
+		color: #000;
 		filter: brightness(0.95);
 	}
 
