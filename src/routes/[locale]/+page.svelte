@@ -21,6 +21,7 @@
 	const regularAnnouncements = $derived(announcements.filter((a) => a.is_urgent !== true));
 
 	const personnel = $derived(data['alpra-personnels']?.data ?? []);
+	const materials = $derived(data['alpra-materials']?.data ?? []);
 </script>
 
 {#if meta?.page_banner}
@@ -37,7 +38,7 @@
 	{#if block?.__component === 'alpra-page-blocks.welcome'}
 		<WelcomeBlock data={block} />
 	{:else if block?.__component === 'alpra-page-blocks.about'}
-		<AboutBlock data={block} {locale} {personnel} />
+		<AboutBlock data={block} {locale} {personnel} {materials} />
 	{:else if block?.__component === 'alpra-page-blocks.services'}
 		<ServicesBlock data={block} />
 	{:else if block?.__component === 'alpra-page-blocks.sprechstunden'}

@@ -21,6 +21,9 @@ const fetchData = async (url, fetchFn = fetch) => {
 	return data;
 };
 
+// Media / blocks populate poorly with pLevel alone — use populate=* (like geko-materials).
+const useStarPopulate = ['alpra-materials'];
+
 export async function getDataFromCMS(path, locale, fetchFn = fetch) {
 	const base = getStrapiPublicUrl();
 	if (!base) {
@@ -28,7 +31,7 @@ export async function getDataFromCMS(path, locale, fetchFn = fetch) {
 		return { data: null };
 	}
 
-	const shouldFetchAllPages = ['alpra-personnels'];
+	const shouldFetchAllPages = ['alpra-personnels', 'alpra-materials'];
 
 	if (shouldFetchAllPages.includes(path)) {
 		return await fetchAllPages(path, locale, fetchFn, base);
@@ -43,8 +46,16 @@ async function fetchAllPages(path, locale, fetchFn = fetch, baseUrl = getStrapiP
 	let currentPage = 1;
 	let totalPages = 1;
 
+	const populateParam = useStarPopulate.includes(path) ? 'populate=*' : 'pLevel';
+	const personnelSort = '&sort=last_name:asc';
+
 	do {
-		const queryUrl = `${baseUrl}/api/${path}?pLevel&locale=${locale}&pagination[page]=${currentPage}&pagination[pageSize]=100&sort=last_name:asc`;
+		const sortAndPagination =
+			path === 'alpra-personnels'
+				? `${personnelSort}&pagination[page]=${currentPage}&pagination[pageSize]=100`
+				: `&pagination[page]=${currentPage}&pagination[pageSize]=100`;
+
+		const queryUrl = `${baseUrl}/api/${path}?${populateParam}&locale=${locale}${sortAndPagination}`;
 		const result = await fetchData(queryUrl, fetchFn);
 
 		if (result?.data) {

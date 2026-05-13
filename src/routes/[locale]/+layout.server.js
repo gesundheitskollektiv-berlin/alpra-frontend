@@ -6,7 +6,13 @@ export async function load({ params, fetch }) {
 
 	const data = {};
 
-	const endpoints = ['alpra-page-landing', 'alpra-meta', 'alpra-announcements', 'alpra-personnels'];
+	const endpoints = [
+		'alpra-page-landing',
+		'alpra-meta',
+		'alpra-announcements',
+		'alpra-personnels',
+		'alpra-materials'
+	];
 
 	for (const endpoint of endpoints) {
 		try {
