@@ -19,6 +19,9 @@
 {/each}
 
 <style>
+	.urgent-alert {
+		font-weight: 700;
+	}
 	.urgent-alert :global(p) {
 		margin-bottom: 0;
 	}
