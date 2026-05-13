@@ -26,7 +26,7 @@
 <section id={sectionId} class={backgroundClass}>
 	<div class="container">
 		<div class="row justify-content-center">
-			<div class="col-lg-8 col-md-9 col-sm-11 my-5">
+			<div class="col-lg-10 col-md-11 col-sm-11 my-5">
 				<h2>{data.title}</h2>
 
 				{#each sprechstunden as sprechstunde, i (sprechstunde.id ?? i)}

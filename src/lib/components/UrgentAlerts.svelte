@@ -8,7 +8,7 @@
 	<div class="urgent-alert bg-alpra-red text-white">
 		<div class="container">
 			<div class="row justify-content-center">
-				<div class="col-lg-8 col-md-9 col-sm-11 py-3">
+				<div class="col-lg-10 col-md-11 col-sm-11 py-3">
 					{#if announcement.content}
 						{@html resolveRichText(announcement.content)}
 					{/if}
