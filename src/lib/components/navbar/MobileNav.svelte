@@ -178,7 +178,7 @@
 						class="geko-reference"
 					>
 						<img
-							src="/images/Logo_Geko_Verweisz.svg"
+							src="/images/Logo_Geko_weiss_cropped.svg"
 							alt="Geko"
 							class="geko-reference-logo"
 						/>
