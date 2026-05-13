@@ -8,9 +8,7 @@ $alpra-black: #000;
 $alpra-yellow: #fff15b;
 $alpra-yellow-light: #fff9bd;
 $alpra-purple: #dbd0ff;
-$alpra-green: #71cf9a;
-$alpra-grey-green: #b8e7cc;
-$alpra-turquoise: #80ddd2;
+$alpra-green: #98d1ca;
 $alpra-dark-grey: #2e2e2e;
 $alpra-light-grey: #ececec;
 $alpra-blue: #80ddd2;
@@ -21,7 +19,7 @@ $theme-colors: (
 	'primary': $alpra-blue,
 	'secondary': $alpra-dark-grey,
 	'success': $alpra-green,
-	'info': $alpra-turquoise,
+	'info': $alpra-green,
 	'warning': $alpra-yellow,
 	'danger': $alpra-red,
 	'light': $alpra-light-grey,
@@ -36,8 +34,8 @@ $theme-colors: (
 	'alpra-blue': $alpra-blue,
 	'alpra-green': $alpra-green,
 	'alpra-purple': $alpra-purple,
-	'alpra-grey-green': $alpra-grey-green,
-	'alpra-turquoise': $alpra-turquoise,
+	'alpra-grey-green': $alpra-green,
+	'alpra-turquoise': $alpra-green,
 	'alpra-dark-grey': $alpra-dark-grey,
 	'alpra-light-grey': $alpra-light-grey,
 	'alpra-text-dark': $alpra-text-dark
