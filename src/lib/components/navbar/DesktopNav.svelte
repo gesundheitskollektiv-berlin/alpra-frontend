@@ -48,7 +48,7 @@
 </script>
 
 <nav
-	class="navbar navbar-expand navbar-light bg-alpra-yellow sticky-top d-none d-xl-flex"
+	class="navbar navbar-expand navbar-light bg-alpra-white sticky-top d-none d-xl-flex"
 	class:py-3={!isScrolled}
 	class:py-2={isScrolled}
 	class:is-scrolled={isScrolled}
@@ -76,7 +76,7 @@
 					{#each navItems as item}
 						<li class="nav-item">
 							<a
-								class="btn-alpra bg-alpra-white text-black"
+								class="btn-alpra bg-alpra-yellow text-black"
 								href={item.href}
 								onclick={handleNavClick}
 							>
